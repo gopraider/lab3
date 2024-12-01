@@ -1,0 +1,118 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+enum Afflication << enumeration >> {
+  - Afflication(String): 
+  + valueOf(String): Afflication
+  + values(): Afflication[]
+  + Type(): String
+}
+class CannibalFest {
+  + CannibalFest(): 
+  + Participated(Person): void
+}
+enum CardinalDirections << enumeration >> {
+  - CardinalDirections(String): 
+  + Type(): String
+  + values(): CardinalDirections[]
+  + valueOf(String): CardinalDirections
+}
+entity CountableItems << record >> {
+  + CountableItems(String, Integer): 
+  + count(): Integer
+  + name(): String
+}
+class Cruzo {
+  + Cruzo(): 
+  + Cruzo(String): 
+  + happen(String): void
+  + say(): void
+  + recognize(Place): void
+  + FollowTo(Person, Place): void
+}
+interface Directionable << interface >> {
+  + SetDirect(String): void
+}
+interface Eatable << interface >> {
+  + EatPeople(ArrayList<Integer>, Integer): void
+}
+class Event {
+  + Event(): 
+  - name: String
+  ~ Participated(Person): void
+   name: String
+}
+interface Followable << interface >> {
+  + FollowTo(Person, Place): void
+}
+class Friday {
+  + Friday(String, String): 
+  + Friday(String): 
+  + Friday(): 
+  + CountItems(String, Integer): void
+  + EatPeople(ArrayList<Integer>, Integer): void
+  + UnKnown(String): void
+  + recognize(Place): void
+  + happen(String): void
+  + say(): void
+}
+enum Languages << enumeration >> {
+  - Languages(String): 
+  + values(): Languages[]
+  + Type(): String
+  + valueOf(String): Languages
+}
+class Main {
+  + Main(): 
+  + main(String[]): void
+}
+class PartOfIsland {
+  + PartOfIsland(): 
+  + PartOfIsland(String): 
+  + SetDirect(String): void
+  + enterplace(Person): void
+}
+class Person {
+  + Person(): 
+  - affilition: String
+  - name: String
+  ~ happen(String): void
+  ~ recognize(Place): void
+  ~ say(): void
+   name: String
+   affilition: String
+}
+class Place {
+  + Place(): 
+  - reason: String
+  ~ enterplace(Person): void
+  + getname(): String
+  + setname(String): void
+   reason: String
+}
+enum Reasons << enumeration >> {
+  - Reasons(String): 
+  + Type(): String
+  + values(): Reasons[]
+  + valueOf(String): Reasons
+}
+interface TakeItems << interface >> {
+  + CountItems(String, Integer): void
+}
+interface UnKnowable << interface >> {
+  + UnKnown(String): void
+}
+
+CannibalFest        -[#000082,plain]-^  Event              
+Cruzo               -[#008200,dashed]-^  Followable         
+Cruzo               -[#000082,plain]-^  Person             
+Friday              -[#008200,dashed]-^  Eatable            
+Friday              -[#000082,plain]-^  Person             
+Friday              -[#008200,dashed]-^  TakeItems          
+Friday              -[#008200,dashed]-^  UnKnowable         
+PartOfIsland        -[#008200,dashed]-^  Directionable      
+PartOfIsland        -[#000082,plain]-^  Place              
+@enduml
